@@ -27,6 +27,10 @@ server {
    listen    [::]:{{ item.value.listen | default(80) }};
    server_name    {{ item.value.domains | join(' ') }};
 
+{% for directive in item.value.server_directives | default([]) %}
+   {{ directive }};
+{% endfor %}
+
    location / {
 {% for acl in item.value.acls | default({}) %}
 {% if acl.mode == 'allow' or acl.mode == 'deny' %}

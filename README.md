@@ -40,6 +40,8 @@ nginx_revproxy_sites:                                         # List of sites to
     acls:                                                     # Limit access to certain client addresses (values can be address, CIDR, unix or all)
       - { mode: allow, value: 192.168.0.1 }
       - { mode: deny, value: all }
+    server_directives:                                        # Raw directives rendered verbatim into the server block
+      - "large_client_header_buffers 2 8k"
 
   example.org:                                                # Domain name
     domains:                                                  # List of server_name aliases
